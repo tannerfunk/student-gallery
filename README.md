@@ -1,2 +1,2 @@
 # react-photo-gallery
- project 2 treehouse
+ Project 2 Treehouse Java Script
