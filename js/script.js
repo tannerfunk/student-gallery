@@ -2,29 +2,16 @@
 Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
-
-
-
 /*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
-
-
-
-/*
-Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
-//declares a function with two parameters
  function showPage(list, page) {
    let startIndex = (page * 9) - 9;
    let endIndex = page * 9;
-   //in index.html there is a unordered list set up with a class of student-list
+   //in index.html there is a unordered list set up with a class of student-list that we are accessing here.
    const studentList = document.querySelector('ul.student-list');
-   //erasing what's there
    studentList.innerHTML = '';
+   // this loops through the students in the data and creates list items for them
    for ( let i = 0; i < list.length; ++i ) {
       if ( i >= startIndex && i < endIndex) {
         const studentItem = `
@@ -42,50 +29,41 @@ This function will create and insert/append the elements needed to display a "pa
         studentList.insertAdjacentHTML('beforeend', studentItem);
       }
    }
-
 }
-
-
-
 /*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+This function creates and inserts/appends the elements needed for the pagination buttons
 */
-
  function addPagination(list) {
+    //this takes the smallest whole number of pages needed to fit all the students with 9 per page
    let numOfPages = Math.ceil(list.length/9);
    const linkList = document.querySelector('ul.link-list');
    linkList.innerHTML = '';
-   //numOfPages.length IS INCORRECT!!!
+   // this produces a button for each page that we have data in
    for (let i = 1; i <= numOfPages; ++i) {
       const button = `
          <li>
          <button type="button">${i}</button>
          </li> 
       `;
-      //Insert the elements you have created to the link-list variable you created earlier. The insertAdjacentHTML method and beforeend option works well for this
+      //Inserting the elements that have been created to the link-list variable created earlier.
       linkList.insertAdjacentHTML('beforeend', button);
-   //Select the first pagination button and give it a class name of active
-   let activeButton = document.querySelector('button');
-   activeButton.className = 'active';
-   //Create an event listener to listen for clicks on the link-list variable that you created earlier.
-   linkList.addEventListener('click', (e) => {
-      if (e.target.tagName === 'BUTTON') {
-         let deactivateButton = document.querySelector('.active');
-         deactivateButton.className = '';
-         e.target.className = 'active';
-         const pageNum = e.target.textContent;
-         showPage(list, pageNum);
-      };
-   });
- };
+      //Setting the default first page button to active
+      let activeButton = document.querySelector('button');
+      activeButton.className = 'active';
+      //An event listener to listen for clicks on the link-list variable created earlier.
+      linkList.addEventListener('click', (e) => {
+         // this makes it so the buttons change color
+         if (e.target.tagName === 'BUTTON') {
+            let deactivateButton = document.querySelector('.active');
+            deactivateButton.className = '';
+            e.target.className = 'active';
+            const pageNum = e.target.textContent;
+            //this sets up the 9 students depending on which page number is clicked
+            showPage(list, pageNum);
+         };
+      });
+   };
 };
-
-
-
-
-
 // Call functions
-
 showPage(data, 1);
 addPagination(data);
