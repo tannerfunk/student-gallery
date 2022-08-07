@@ -46,6 +46,7 @@ This function creates and inserts/appends the elements needed for the pagination
          </li> 
       `;
       //Inserting the elements that have been created to the link-list variable created earlier.
+      //can be refactored to be OUT side of the for loop..
       linkList.insertAdjacentHTML('beforeend', button);
       //Setting the default first page button to active
       let activeButton = document.querySelector('button');
@@ -67,3 +68,5 @@ This function creates and inserts/appends the elements needed for the pagination
 // Call functions
 showPage(data, 1);
 addPagination(data);
+
+// alert(variable);
