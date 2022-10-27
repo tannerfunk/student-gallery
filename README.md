@@ -1,2 +1,2 @@
-# react-photo-gallery
- photo gallery using vanilla javascript
+# A Mock Student Info Gallery
+pagination using vanilla javascript
